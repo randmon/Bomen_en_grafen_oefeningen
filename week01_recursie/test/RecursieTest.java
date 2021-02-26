@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
@@ -217,6 +218,26 @@ public class RecursieTest {
 		assertTrue(res.contains("abc"));
 	}
 	
-	
-	
+	@Test (expected = IllegalArgumentException.class)
+	public void testOef11_AantalKaarten_negatieveGetal_gooit_IllegalArgumentException() {
+		Recursie.aantalKaarten(-1);
+	}
+
+	@Test
+	public void testOef11_AantalKaarten_nul_geeft_nul_terug() {
+		Assert.assertEquals(0, Recursie.aantalKaarten(0));
+	}
+
+	@Test
+	public void testOef11_AantalKaarten_1_geeft_2_terug() {
+		Assert.assertEquals(2, Recursie.aantalKaarten(1));
+	}
+
+	@Test
+	public void testOef11_AantalKaarten_eenPaarTesten() {
+		Assert.assertEquals(7, Recursie.aantalKaarten(2));
+		Assert.assertEquals(15, Recursie.aantalKaarten(3));
+		Assert.assertEquals(222, Recursie.aantalKaarten(12));
+		Assert.assertEquals(610, Recursie.aantalKaarten(20));
+	}
 }

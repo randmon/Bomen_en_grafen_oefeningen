@@ -86,9 +86,7 @@ public class Recursie {
                 String current = String.valueOf(s.charAt(i));
                 ArrayList<String> toAddLijst = findSubstrings(s.substring(i+1));
                 for (String toAdd : toAddLijst) {
-                    if (toAdd.length() > 0) {
-                        result.add(current + toAdd);
-                    }
+                    if (toAdd.length() > 0) result.add(current + toAdd);
                 }
                 result.add(current);
             }
@@ -96,5 +94,13 @@ public class Recursie {
         result.sort(Comparator.comparing(String::length));
         return result;
     }
+
+    // oefening 11;
+    public static int aantalKaarten(int n) {
+        if (n < 0) throw new IllegalArgumentException();
+        if (n == 0) return 0;
+        return 2*n + n - 1 + aantalKaarten(n-1);
+    }
+
 
 }
