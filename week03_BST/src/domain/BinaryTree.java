@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class BinaryTree<E>{
 	E data;
 	BinaryTree<E> leftTree, rightTree;
@@ -23,26 +25,59 @@ public class BinaryTree<E>{
 			if (this.rightTree != null) this.rightTree.printPreorder();
 	}
 
+	public void printInorder(){
+		if (this.leftTree != null) this.leftTree.printInorder();
+		System.out.print(this.data + " ");
+		if (this.rightTree != null) this.rightTree.printInorder();
+	}
 
-	//*ONDERSTAANDE METHODES NIET IMPLEMENTEREN! DEZE MOETEN GEIMPLEMENTEERD WORDEN IN DE BinarySearchTree file!*//
-	boolean lookup(E data) {
+	public boolean lookup(E data) {
+		if (isLeaf()) return this.data.equals(data);
+		return (this.data.equals(data))
+				|| (leftTree != null && leftTree.lookup(data))
+				|| (rightTree != null && rightTree.lookup(data));
+	}
+
+	public boolean isLeaf() {
+		return leftTree == null && rightTree == null;
+	}
+
+	public boolean addNode(E data) {
 		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
 	}
 
-	boolean addNode(E data) {
+	public boolean removeNode(E data){
 		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
 	}
 
-	boolean removeNode(E data){
+	/**Searches the whole tree for leaves with data null, and sets the whole object as null*/
+	public boolean cleanUp() {
+		if (data == null) return true; //Not able to delete self! Ask from parent by returning true!
+		if (leftTree != null) {
+			if (leftTree.cleanUp()) leftTree = null;
+		}
+		if (rightTree != null) {
+			if (rightTree.cleanUp()) rightTree = null;
+		}
+		return false;
+	}
+
+	public E searchSmallest(){
 		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
 	}
 
-	E searchSmallest(){
+	public E searchGreatest(){
 		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
 	}
 
-	E searchGreatest(){
-		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
+	public int countNodes() {
+		int count = 1;
+		if (leftTree != null) count += leftTree.countNodes();
+		if (rightTree != null) count += rightTree.countNodes();
+		return count;
 	}
 
+	public ArrayList<E> getPath(E data) {
+		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
+	}
 }
