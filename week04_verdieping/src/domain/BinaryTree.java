@@ -19,13 +19,19 @@ public class BinaryTree<E>{
 		this.rightTree= rightTree;
 	}
 	
-	public void printPreorder(){
-			System.out.print(this.data + " ");
-			if (this.leftTree != null) this.leftTree.printPreorder();
-			if (this.rightTree != null) this.rightTree.printPreorder();
+	public void printPreorder() {
+		System.out.print(this.data + " ");
+		if (this.leftTree != null) this.leftTree.printPreorder();
+		if (this.rightTree != null) this.rightTree.printPreorder();
 	}
 
-	public void printInorder(){
+	public void printPostorder() {
+		if (this.leftTree != null) this.leftTree.printPostorder();
+		if (this.rightTree != null) this.rightTree.printPostorder();
+		System.out.print(this.data + " ");
+	}
+
+	public void printInorder() {
 		if (this.leftTree != null) this.leftTree.printInorder();
 		System.out.print(this.data + " ");
 		if (this.rightTree != null) this.rightTree.printInorder();
